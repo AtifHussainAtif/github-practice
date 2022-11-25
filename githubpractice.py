@@ -10,4 +10,4 @@ class Laptop:
 laptop1 = Laptop('HP', "Core i5", 60000)
 laptop2 = Laptop('Dell', 'core i 7', 70000)
 
-print(Laptop.Full_name(laptop1))
+print(Laptop.Full_name(laptop2))
