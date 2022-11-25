@@ -7,3 +7,7 @@ def january(request):
 
 def february(request):
     return HttpResponse("this month is february")
+
+
+def monthly_challenge(request, month):
+    return HttpResponse()
