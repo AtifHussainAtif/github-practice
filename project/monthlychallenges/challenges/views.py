@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 # Create your views here.
 
+
 monthly_challenges = {
     "january" : "this is january",
     "february": "this is february",
@@ -19,6 +20,17 @@ monthly_challenges = {
     "december" : "this is december"
 }
 
+def index(request):
+    list_items = ""
+    months = list(monthly_challenges.keys())
+
+    for month in months:
+        capatilized_month = month.capitalize()
+        month_path = reverse("month-challenges", args=[month])
+        list_items += f"<li> <a href=\"{month_path}\">{capatilized_month}</a></li>"
+        response_data = f"<ul>{list_items}</ul>"
+    return HttpResponse(response_data)
+
 
 def monthly_challenges_by_number(request, month):
     months = list(monthly_challenges.keys())
@@ -34,6 +46,7 @@ def monthly_challenges_by_number(request, month):
 def monthly_challenge(request, month):
     try:
        challenges_text = monthly_challenges[month]
-       return HttpResponse(challenges_text)
+       response_data = f"<h1>{challenges_text}</h1>"
+       return HttpResponse(response_data)
     except:
         return HttpResponseNotFound("wrong month")
