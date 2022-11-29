@@ -27,8 +27,9 @@ def index(request):
     for month in months:
         capatilized_month = month.capitalize()
         month_path = reverse("month-challenges", args=[month])
-        list_items += f"<li> <a href=\"{month_path}\">{capatilized_month}</a></li>"
-        response_data = f"<ul>{list_items}</ul>"
+        list_items += f"<li><a href=\"{month_path}\">{capatilized_month}</a></li>"
+    
+    response_data = f"<ul>{list_items}</ul>"
     return HttpResponse(response_data)
 
 
@@ -49,4 +50,4 @@ def monthly_challenge(request, month):
        response_data = f"<h1>{challenges_text}</h1>"
        return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("this month is invalid")
+        return HttpResponseNotFound("<h1>this month is invalid</h1>")
